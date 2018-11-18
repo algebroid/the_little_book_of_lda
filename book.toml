@@ -1,0 +1,8 @@
+[book]
+authors = ["algebroid"]
+multilingual = false
+src = "src"
+title = "The Little Book of LDA (Japanese)"
+
+[output.html]
+mathjax-support = true
