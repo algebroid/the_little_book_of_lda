@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Little Book of LDA (Japanese)</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="what-is-lda.html"><strong aria-hidden="true">1.</strong> LDAとは何か？</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">The Little Book of LDA (Japanese)</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#a1-ldaとは何か" id="a1-ldaとは何か"><h1>1. LDAとは何か？</h1></a>
+<p>LDA (Latent Dirichlet Allocation) は離散データの集合に対する生成的確率モデルであり，Blei, Ng, and Jordan 2003によって考案された．一般的にLDAは，トピックモデリングとして知られる，テキストの集合をモデリングするために使われる．</p>
+<p>トピックとは，単語上における確率分布である (Steyvers and Griffiths 2007)．[このことを理解する比喩として] あなたはバッグを持っていて，その中には単語が書かれた四角いカードがたくさん入っていると想像して欲しい（これはスクラブルというゲームに似ているが，カードの単位はアルファベット1字ではなく単語であるところが違う）．バッグに入っていない単語が存在する確率はゼロである．そして，すべてのバッグに入っている単語の確率はゼロより大きい確率で存在する．仮に今，バッグの中に'Philadelphia'という単語が2つ，'Eagles'という単語が1つ入っているとする．するとこのバッグから'Eagles'を引く確率は1/3，'Philadelphia'を引く確率は2/3，他の単語を引く確率は0と言えるだろう．これは意味のあるトピックである．それは与えられたトピックのための単語の集合の確率を与えている．</p>
+<p>LDAの一般的なアイデアは，各々の文書 (document) はいくつものトピックの混合から生成されるものであり，各々のトピックは単語の混ぜ合わせから成っていることである．これは新しい文書を，アプリオリに与えたトピックから生成するモデルとして応用できる．またはすでに手元にある文書の集合に存在するトピックを推測することもできる．</p>
+<p>LDAというモデル名に関して，あなたは [現時点で] 以下のような考えを持つことができるだろう：</p>
+<ul>
+<li><strong>Latent (潜在的)</strong>： 文書中のトピックの構造は<strong>潜在的</strong>である．つまりテキスト中の<strong>隠れた</strong>構造であることを意味する．</li>
+<li><strong>Dirichlet (ディリクレ)</strong>：ディリクレ分布は，文書内の各トピックの混合比率と各単語の混合比率を決定する．</li>
+<li><strong>Allocation (配分)</strong>：与えられた各トピックへの単語の配分を行う．</li>
+</ul>
+<p>以上をまとめると：我々はコーパス中に潜在的構造を持っており(トピック)，ディリクレ分布に基づいて，各々の文書の中にはトピックの分布，各々のトピックの中には単語の分布が存在し，与えられた文書に対してトピックの配分，トピックに対しては単語の配分が行われる．</p>
+<p>一部の読者は以上で言及された専門用語や[確率]分布に慣れ親しんでいないことと思う．しかしそんな人にこそ本書を読み進めていただきたい．ナットとボルト[のような専門用語と数学]は以下に続く章のなかですべて説明し，しかしLDAが何であるか，なぜそれが役に立つのか理解するのを助けるために，簡単な例を示していく．以下の章では数学と技術的概念について説明を行う．</p>
+<a class="header" href="#a11-動物ジェネレーター" id="a11-動物ジェネレーター"><h2>1.1 動物ジェネレーター</h2></a>
+<p>この本の大部分は単語，トピック，そして文書に関するものであるが，ここでは少し変わった視点から始めてみよう：動物とそれらの生息地域について考えてみる．動物を分類する一つの方法は，それらが陸地，空，海のどこで大部分の時間を過ごしたかに依ることである．明らかに，これらのうち一箇所にしか居住できない動物が存在する：牛は陸地にしか生息できないし，魚は海にしか生息できない．しかしながら，鳥のような動物は，陸地，海，空にわたって時間を按分して過ごしている．</p>
+<p>ここであなたは次のように思っているかもしれない．「こんなことを考えて著者はどこに行こうとしているのだ？」．我々は陸地，海，そして空を，動物の分布を含むトピックとして考えることができる．この場合は動物を単語と同一視することができる．例として，陸地では鯨より牛を見る可能性が非常に高いが，海ではその逆になる[ということを考える]．これらの確率を生息地のタイプ (陸地，海，空 - つまりトピック) 毎に全ての動物 (単語) に渡って定量化したならば，それを使って陸地，海，空 (のトピック)が混在しているであろう，ある与えられた地域 (文書) に居住している動物の集合を生成することができる．</p>
+<p>では特定の地域を生成するということをやってみよう．我々はどんな [タイプの] 生息地が存在するかによって，その地域が異なるということを知っている．例えば，ビーチは陸地，海，空を含むが，内陸にある砂漠のような場所は陸地と空しか含まないだろう．それぞれの地域を生息地のタイプの混合として定義することができる．例として，ビーチは 1/3 が陸地，1/3 が海，1/3 が空として定義できる．ビーチは単一の文書をなしていると考えることができる．まとめると：ある与えられた地域 (文書) は陸地，空，そして海 (というトピック) の混合であり，それぞれのトピックは動物 (単語) の相異なる混合を含んでいる．</p>
+<p>自前の動物と生息地を用意して具体例を試してみよう．この章で提供される例は，LDAがどのように動作するかを概観するために非常に単純化されている．</p>
+<p>我々のビーチ地域を 1/3 の陸生動物，1/3 の海棲動物，1/3 の飛行動物で生成するところから始める．以下にトピック毎の動物の存在確率のリストを示す．ある動物は与えられたトピックに対してゼロの存在確率しか持たないことが見て取れるだろう．例えば牛は海洋には絶対に存在しない．またある動物は他の動物より高い確率で存在することがわかる：カニは海に時おり見られる程度だが，魚は常に海に存在する．また空のカテゴリに一種類の動物しか居ないことに気づかれたかもしれない．現実には様々な鳥が存在するが，我々の語彙には飛べる鳥が1種類しかいないことになっている．</p>
+<blockquote>
+<p>これらは与えられたトピックに対する単語の存在確率であり，したがってそれぞれの生息地 (列) について総和は 1 になる．</p>
+</blockquote>
+<p><center> Table 1.1: 各生息地における動物の分布 </center></p>
+<table><thead><tr><th> vocab  </th><th> land  </th><th> sea  </th><th> air </th></tr></thead><tbody>
+<tr><td>🐋   </td><td> 0.00  </td><td> 0.12 </td><td> 0   </td></tr>
+<tr><td>🐳   </td><td> 0.00  </td><td> 0.12 </td><td> 0   </td></tr>
+<tr><td>🐟   </td><td> 0.00  </td><td> 0.12 </td><td> 0   </td></tr>
+<tr><td>🐠   </td><td> 0.00  </td><td> 0.12 </td><td> 0   </td></tr>
+<tr><td>🐙   </td><td> 0.00  </td><td> 0.12 </td><td> 0   </td></tr>
+<tr><td>🦀   </td><td> 0.05  </td><td> 0.06 </td><td> 0   </td></tr>
+<tr><td>🐊   </td><td> 0.05  </td><td> 0.06 </td><td> 0   </td></tr>
+<tr><td>🐢   </td><td> 0.05  </td><td> 0.06 </td><td> 0   </td></tr>
+<tr><td>🐍   </td><td> 0.05  </td><td> 0.06 </td><td> 0   </td></tr>
+<tr><td>🐓   </td><td> 0.10  </td><td> 0.00 </td><td> 0   </td></tr>
+<tr><td>🦃   </td><td> 0.10  </td><td> 0.00 </td><td> 0   </td></tr>
+<tr><td>🐦   </td><td> 0.05  </td><td> 0.06 </td><td> 1   </td></tr>
+<tr><td>🐧   </td><td> 0.05  </td><td> 0.06 </td><td> 0   </td></tr>
+<tr><td>🐿   </td><td> 0.10  </td><td> 0.00 </td><td> 0   </td></tr>
+<tr><td>🐘   </td><td> 0.10  </td><td> 0.00 </td><td> 0   </td></tr>
+<tr><td>🐂   </td><td> 0.10  </td><td> 0.00 </td><td> 0   </td></tr>
+<tr><td>🐑   </td><td> 0.10  </td><td> 0.00 </td><td> 0   </td></tr>
+<tr><td>🐪   </td><td> 0.10  </td><td> 0.00 </td><td> 0   </td></tr>
+</tbody></table>
+<p>以上の記述に基づいてビーチ (文書) を生成するには，これらの確率表を用いて実直な実装を行う：</p>
+<pre><code class="language-r">words_per_topic &lt;- 3
+equal_doc &lt;- c(vocab[sample.int(length(vocab),words_per_topic, prob=phi_ds$land, replace = T)],
+               vocab[sample.int(length(vocab),words_per_topic, prob=phi_ds$sea, replace = T)],
+               vocab[sample.int(length(vocab),words_per_topic, prob=phi_ds$air, replace = T)])
+cat(equal_doc)
+</code></pre>
+<pre><code>## 🐘 🐂 🐪 🐧 🐧 🐙 🐦 🐦 🐦
+</code></pre>
+<p>上の例では，トピックの混合は静的かつ等しく現れ，それぞれの生息地 (トピック) について 3 匹ずつ動物が寄与している．</p>
+<p>先に進む前に，Tim Hopper が生成的 LDA の動作について emoji を利用して光を当てたプレゼンについて言及しておく (Hopper 2016)．</p>
+<p>続いて海洋 (ocean) をセッティングしてみよう．海洋は海と空だけが存在するので，文書中のトピック分布は 50% が海，50% が空，そして 0% が陸地である．</p>
+<pre><code class="language-r">words_per_topic &lt;- 3
+ocean_doc &lt;- c(vocab[sample.int(length(vocab),words_per_topic, prob=phi_ds$sea, replace = T)],
+               vocab[sample.int(length(vocab),words_per_topic, prob=phi_ds$air, replace = T)])
+cat(ocean_doc)
+</code></pre>
+<pre><code>## 🐋 🐳 🐢 🐦 🐦 🐦
+</code></pre>
+<p>上の例では海と空のみが海洋地域に寄与するとしている．ゆえに双方のトピックが同数の動物を[海洋]地域に寄与している．</p>
+<a class="header" href="#a111-混合の生成" id="a111-混合の生成"><h2>1.1.1 混合の生成</h2></a>
+<p>上の例が，あらかじめ決められたトピック混合と静的な単語を用いたものであったことに注意することは重要であるが，これらの混合はディリクレ分布からサンプリングするだけで作成できるのである．このことは，LDA を用いて文書のトピック構造をいかに推定するかという方法論の基礎となるため，重要な特徴である．LDA におけるディリクレ分布とその役割については後の章で詳細を議論する．</p>
+<a class="header" href="#a12-推定" id="a12-推定"><h2>1.2 推定</h2></a>
+<p>これまでに，与えられた地域を代表する動物の集合を生成できることを見てきた．もし幾千もの地域があり，その陸地，空，海の混合割合を知りたいと思った時，どうすればよいだろうか？　あるいはもし，各々の動物がどれくらいの期間過ごすかについて全く分からない時，どうすればよいだろうか？　LDA はこれらの情報の両方を推論することを可能にする．ここでは前の例で地域 (文書) を生成したときのように，様々な生息地の混合と異なる長さからなる 100 のランダムな文書を生成する．</p>
+<p><center> Table 1.2: ある 2 つの地域における動物の出現 </center></p>
+<table><thead><tr><th> Document </th><th> Animals </th></tr></thead><tbody>
+<tr><td> 1        </td><td> 🐪 🐘 🐪 🐘 🐦 🐓 🐪 🐪 🐍 🐪 🐧 🦀 🦀 🐪 🐓 🐍 🐘 🐓 🐍 🐿 🐧 🐢 🐧 🦃 🦃 🐧 🐦 🐑 🐑 🐊 🐳 🦀 🦀 🐿 🐢 🐢 🐿 🐓 🐪 🐊 🐘 🐦 🐪 🐂 🐍 🐓 🐍 🐓 🐦 🐍 🦃 🐦 🐪 🐍 🐿 🐦 🐦 🐂 🐿 🐍 🐂 🐿 🐦 🐦 🐑 🐂 🐓 🐓 🐧 🐑 🐦 🐪 🐦 🐧 🐿 🐪 🐦 🐢 🦃 🐿 🦃 🐦 🐑 🐊 🦃 🐪 🦃 🐓 🐂 🐊 🐊 🐂 🦃 </td></tr>
+<tr><td> 2        </td><td> 🐙 🐂 🐦 🐦 🐓 🐧 🐪 🐙 🐧 🐙 🐪 🐘 🐋 🐂 🐦 🐧 🐦 🐙 🐦 🐳 🐟 🐊 🐟 🐢 🐠 🐠 🐪 🐢 🐦 🐘 🐍 🐳 🦃 🐟 🐙 🦀 🐊 🐳 🐪 🐠 🐧 🐢 🐢 🐦 🐍 🐧 🐿 🐢 🐪 🐢 🐧 🐓 🐑 🐳 🐧 🐍 🐊 🐂 🦃 🐋 🐪 🐓 🐿 🐟 🐙 🐋 🦀 🐂 🐦 🐳 🐢 🐟 🐦 🐘 🐊 🐓 🐓 🐧 🐊 🐢 🐪 🐓 🐊 🐢 🐑 🐢 🐙 🐊 🐢 🐧 🐪 </td></tr>
+</tbody></table>
+<p>以前 Table 1.1 で示されたトピック単語分布は，サンプル文書を生成するために使われていた．上の 2 つの文書を生成するために，Table 1.3 に示す真の生息地 (トピック) の混合比率を用いている．</p>
+<p><center> Table 1.3: 上記 2 つの生息地の分布</center></p>
+<table><thead><tr><th> Document  </th><th> air  </th><th> land  </th><th> sea  </th></tr></thead><tbody>
+<tr><td> 1         </td><td> 0.09 </td><td> 0.90  </td><td> 0.01 </td></tr>
+<tr><td> 2         </td><td> 0.09 </td><td> 0.51  </td><td> 0.39 </td></tr>
+</tbody></table>
+<p>LDA の助けを借りると，すべての文書を見通してから，トピック/単語 (生息地/動物) 分布とトピック/文書 (生息地/地域) 分布を推定することができる．</p>
+<p>真の分布と推定された単語/トピック分布を Table 1.4 に示す．</p>
+<p><center > Table 1.4: トピック毎の真の単語分布と推定された単語分布</center></p>
+<table><thead><tr><th>     </th><th>  air estimated  </th><th> air   </th><th> land estimated </th><th> land </th><th> sea estimated </th><th>  sea </th></tr></thead><tbody>
+<tr><td> 🐋  </td><td>  0.00        </td><td>   0   </td><td>        0.00    </td><td> 0.00 </td><td> 0.11          </td><td> 0.12 </td></tr>
+<tr><td> 🐳  </td><td>  0.01        </td><td>   0   </td><td>        0.01    </td><td> 0.00 </td><td> 0.10          </td><td> 0.12 </td></tr>
+<tr><td> 🐟  </td><td>  0.00        </td><td>   0   </td><td>        0.00    </td><td> 0.00 </td><td> 0.11          </td><td> 0.12 </td></tr>
+<tr><td> 🐠  </td><td>  0.00        </td><td>   0   </td><td>        0.00    </td><td> 0.00 </td><td> 0.12          </td><td> 0.12 </td></tr>
+<tr><td> 🐙  </td><td>  0.00        </td><td>   0   </td><td>        0.00    </td><td> 0.00 </td><td> 0.12          </td><td> 0.12 </td></tr>
+<tr><td> 🦀  </td><td>  0.01        </td><td>   0   </td><td>        0.04    </td><td> 0.05 </td><td> 0.06          </td><td> 0.06 </td></tr>
+<tr><td> 🐊  </td><td>  0.00        </td><td>   0   </td><td>        0.05    </td><td> 0.05 </td><td> 0.07          </td><td> 0.06 </td></tr>
+<tr><td> 🐢  </td><td>  0.01        </td><td>   0   </td><td>        0.05    </td><td> 0.05 </td><td> 0.06          </td><td> 0.06 </td></tr>
+<tr><td> 🐍  </td><td>  0.00        </td><td>   0   </td><td>        0.06    </td><td> 0.05 </td><td> 0.05          </td><td> 0.06 </td></tr>
+<tr><td> 🐓  </td><td>  0.00        </td><td>   0   </td><td>        0.10    </td><td> 0.10 </td><td> 0.00          </td><td> 0.00 </td></tr>
+<tr><td> 🦃  </td><td>  0.00        </td><td>   0   </td><td>        0.10    </td><td> 0.10 </td><td> 0.00          </td><td> 0.00 </td></tr>
+<tr><td> 🐦  </td><td>  0.95        </td><td>   1   </td><td>        0.02    </td><td> 0.05 </td><td> 0.11          </td><td> 0.06 </td></tr>
+<tr><td> 🐧  </td><td>  0.00        </td><td>   0   </td><td>        0.05    </td><td> 0.05 </td><td> 0.06          </td><td> 0.06 </td></tr>
+<tr><td> 🐿  </td><td>  0.00        </td><td>   0   </td><td>        0.10    </td><td> 0.10 </td><td> 0.01          </td><td> 0.00 </td></tr>
+<tr><td> 🐘  </td><td>  0.00        </td><td>   0   </td><td>        0.10    </td><td> 0.10 </td><td> 0.00          </td><td> 0.00 </td></tr>
+<tr><td> 🐂  </td><td>  0.00        </td><td>   0   </td><td>        0.10    </td><td> 0.10 </td><td> 0.00          </td><td> 0.00 </td></tr>
+<tr><td> 🐑  </td><td>  0.00        </td><td>   0   </td><td>        0.10    </td><td> 0.10 </td><td> 0.01          </td><td> 0.00 </td></tr>
+<tr><td> 🐪  </td><td>  0.00        </td><td>   0   </td><td>        0.11    </td><td> 0.10 </td><td> 0.00          </td><td> 0.00 </td></tr>
+</tbody></table>
+<p>最初の 5 つのドキュメントについて[真の]文書トピックの混合比率と推定された混合比率を示す．</p>
+<p><center> Table 1.5: 生成された最初の 5 つの文書の推定されたトピック分布 </center></p>
+<table><thead><tr><th> Location </th><th> air estimated </th><th> air    </th><th> land estimated </th><th> land     </th><th> sea estimated </th><th> sea  </th></tr></thead><tbody>
+<tr><td> 1        </td><td> 0.09          </td><td> 0.09   </td><td> 0.90           </td><td> 0.90     </td><td> 0.01          </td><td> 0.01 </td></tr>
+<tr><td> 2        </td><td> 0.05          </td><td> 0.09   </td><td> 0.46           </td><td> 0.51     </td><td> 0.48          </td><td> 0.39 </td></tr>
+<tr><td> 3        </td><td> 0.41          </td><td> 0.36   </td><td> 0.54           </td><td> 0.64     </td><td> 0.05          </td><td> 0.00 </td></tr>
+<tr><td> 4        </td><td> 0.53          </td><td> 0.50   </td><td> 0.45           </td><td> 0.48     </td><td> 0.02          </td><td> 0.01 </td></tr>
+<tr><td> 5        </td><td> 0.47          </td><td> 0.41   </td><td> 0.25           </td><td> 0.40     </td><td> 0.27          </td><td> 0.19 </td></tr>
+<tr><td> 6        </td><td> 0.03          </td><td> 0.02   </td><td> 0.35           </td><td> 0.38     </td><td> 0.62          </td><td> 0.59</td></tr>
+</tbody></table>
+<p>単語/トピック分布と文書/トピック分布の両方の推定結果について，文書を生成するのに用いた真の分布からばらつきがあることが見て取れると思う．それぞれの文書における，推定されたトピックと真のトピックのコサイン類似度を以下に示す．</p>
+<p><center> Table 1.6: 推定された文書/トピック分布と真の分布のコサイン類似度</center></p>
+<table><thead><tr><th> air   </th><th> land  </th><th> sea  </th></tr></thead><tbody>
+<tr><td> 0.99  </td><td> 0.99  </td><td> 0.99 </td></tr>
+</tbody></table>
+<p><center> Table 1.7: 推定されたトピック/単語分布と真の分布のコサイン類似度</center></p>
+<table><thead><tr><th> air   </th><th> land </th><th> sea  </th></tr></thead><tbody>
+<tr><td> 1.00  </td><td> 0.99 </td><td> 0.98 </td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
