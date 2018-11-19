@@ -13,7 +13,7 @@ before_script:
   - cargo install-update -a
 
 script:
-  - mdbook build $HOME/dev/github/the_little_book_of_lda && mdbook test $HOME/dev/github/the_little_book_of_lda
+  - mdbook build
 
 deploy:
     provider: pages
